@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Machine Translator Evaluator</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="bootstrap/css/bootstrap.min.css"
+		/>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+		<meta content="utf-8" http-equiv="encoding" />
+	</head>
+
+	<body class="body">
+		<div class="row">
+			<div class="col-sm-1"></div>
+
+			<div class="col-sm-10">
+				<div class="row brand">
+					<div class="col-sm-10 header">
+						<a href="index.html">
+							<div>
+								<img class="element logo" src="images/logo.png" />
+								<span class="element title">Dialect-Analysis</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-sm-2 center">
+						<button
+							class="btn btn-github"
+							onclick="window.location.href='https://github.com/FallenSage0614/MLE-Dialect-Analysis';"
+						>
+							Github Repo
+						</button>
+					</div>
+				</div>
+
+				<div class="row intro">
+					<div class="col-sm-6">
+						<div class="row intro-element">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8">
+								<span class="platform-text">PLATFORM:</span>
+							</div>
+							<div class="col-sm-2"></div>
+						</div>
+						<div class="row intro-element">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8">
+								<span class="platform-name-text"
+									>MACHINE TRANSLATION<br />EVALUATOR</span
+								>
+							</div>
+							<div class="col-sm-2"></div>
+						</div>
+						<div class="row intro-element">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8">
+								<span class="platform-description">
+									<a
+										class="platform-description"
+										href="https://en.wikipedia.org/wiki/Machine_translation"
+										>Machine Translation</a
+									>
+									abbreviated as M.T. is a sub-field of computational
+									linguistics that investigates the use of software to translate
+									text or speech from one language to another. Our application
+									checks for statistics among transalators published around the
+									world by various tech-giants. The algorithm behind the
+									statistics is the key to evalution system.
+								</span>
+							</div>
+							<div class="col-sm-2"></div>
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8 br-red">
+								<span class="platform">Platform:</span>
+								<br />
+								<span class="platform-bold">MACHINE TRANSLATION EVALUATOR</span>
+							</div>
+							<div class="col-sm-2"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row choice-div">
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-8 search-load-btn">
+								<div class="description-choice-btn choice-height">
+									<span class="choice-heading">Search Space</span><br />
+									Use this to translate various translator services available
+									online. It also shows the time taken by each of the
+									translators to find the result and return the output.
+									<span class="highlight2"
+										>We are not using any API to avoid chances of variation in
+										response time.</span
+									>
+								</div>
+								<button
+									class="choice-height btn-choice"
+									onclick="displaySearchSpace()"
+								>
+									<img width="40px" src="images/arrow1.png" />
+								</button>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-8 search-load-btn">
+								<div class="description-choice-btn choice-height">
+									<span class="choice-heading">Efficiency Charts</span><br />
+									This tool provides various options to fetch the efficiency of
+									various translators and compare them side by side. You can
+									also compare the efficiency of a translator for various
+									languages.
+									<span class="highlight2"
+										>We are showing the prefetched results of our trainer model
+										to reduce response time.</span
+									>
+								</div>
+								<button
+									class="choice-height btn-choice"
+									onclick="displayEfficiencyCharts()"
+								>
+									<img width="40px" src="images/arrow1.png" />
+								</button>
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row details">
+					<span>
+						We seek to realize the efficiency of machine translation through
+						this project. On a basic level, MT performs mechanical substitution
+						of words in one language for words in another, but that alone rarely
+						produces a good translation because recognition of whole phrases and
+						their closest counterparts in the target language is needed. Not all
+						words in one language have equivalent words in another language, and
+						many words have more than one meaning. In addition, two given
+						languages may have completely different structures.<br />
+						Solving this problem with corpus statistical and neural techniques
+						is a rapidly-growing field that is leading to better translations,
+						handling differences in linguistic typology, translation of idioms,
+						and the isolation of anomalies.<br /><br />
+						Keeping that in mind, this project is helpful in obtaining the
+						efficiency of various online translators available virtually. We are
+						using the
+						<a href="https://en.wikipedia.org/wiki/Levenshtein_distance"
+							><span class="highlight">Levenshtein distance </span></a
+						>
+						to obtain the comparison statistics and then using that the
+						<span class="highlight">
+							Python based Heroku Server and MongoDB Atlas Database
+						</span>
+						models the database every night at 1:00 AM (GT+5:30) with a set of
+						100 sentences in each of the chosen languages and stores the
+						obtained most valuable output.
+					</span>
+				</div>
+
+				<div class="row search-div" id="search-div">
+					<div class="col-sm-12">
+						<div class="row">
+							<span class="search-space-heading highlight">SEARCH SPACE :</span>
+							<br />
+							<span class="search-space-description">
+								Using the below options you can translate a single phrase from
+								one language to another using various translators like
+								<span class="highlight"
+									>DeepL Translate, Google Translate, Bing Translate, Yandex
+									Translate.</span
+								>
+								We will soon be increasing support for many other available
+								translation services. The callback time is the time take by the
+								request to return a response and fetch a genuine result from the
+								document received.
+							</span>
+						</div>
+						<div class="row search-options">
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="col-sm-2">
+										<label for="phrase-input" class="elem-label"
+											>Phrase to Translate:</label
+										>
+									</div>
+									<div class="col-sm-10">
+										<textarea
+											class="form-control"
+											id="phrase-input"
+											placeholder="Write your text here..."
+										></textarea>
+									</div>
+								</div>
+								<div class="row center">
+									<span class="error" id="phrase-error">
+										Error: Empty phrases are not allowed...!
+									</span>
+								</div>
+								<br />
+								<div class="row">
+									<div class="col-sm-5 search-elem">
+										<div class="row">
+											<div class="col-sm-2">
+												<label for="from-lang" class="elem-label">From:</label>
+											</div>
+											<div class="col-sm-10 from-lang">
+												<select
+													class="form-control select"
+													id="from-lang"
+												></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-5 search-elem">
+										<div class="row">
+											<div class="col-sm-2">
+												<label for="to-lang" class="elem-label">To:</label>
+											</div>
+											<div class="col-sm-10 to-lang">
+												<select
+													class="form-control select"
+													id="to-lang"
+												></select>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-2 center search-elem search-btn">
+										<button class="btn btn-search" onclick="searchPhrase()">
+											Go...!
+										</button>
+									</div>
+								</div>
+								<div class="row center">
+									<span class="error" id="clash-error">
+										Error: Source and target languages cannot be the same...!
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="row search-results">
+							<div class="col-sm-12" id="result-div">
+								<!-- <div class="row result-instance">
+									<div class="col-sm-2">
+										<img class="translator-icon" src="images/g-trans.png" />
+										<label class="elem-label">Google Translate:</label>
+									</div>
+									<div class="col-sm-10">
+										<textarea
+											class="form-control google-translate"
+											id="result"
+											readonly
+										>
+ cgvhbjhb
+</textarea
+										>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-5">Scraped from: <a href=""></a></div>
+									<div class="col-sm-5">Response Time:</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row eff-charts-div" id="efficiency-charts">
+					<div class="col-sm-12">
+						<div class="row">
+							<span class="efficiency-space-heading highlight"
+								>EFFICIENCY CHARTS :</span
+							>
+							<br />
+							<span class="efficiency-space-description">
+								This space provides an option to compare the efficiency of
+								various translator tools as well as compare the effectiveness of
+								a single translator over the set of languages. The comparisons
+								are made in respect of the
+								<span class="highlight">DeepL Translator</span> which act as a
+								reference being the only compiler available using a string
+								dictionary structure transaltion algorithm. DeepL translator has
+								been recognized by tech crunch as the most precise translator
+								and most close to natural human translation.
+							</span>
+						</div>
+						<div class="row efficiency-options">
+							<div class="col-sm-12">
+								<div class="row option-description">
+									<span class="highlight">Translator Select:</span> Selecting a
+									translator from below will display a collection of horizontal
+									bar values representing efficiency obtained by converting
+									sentences from one languages into another. This tool fetches
+									the values prefetched and stored on the MongoDB Server.
+								</div>
+								<div class="row">
+									<div class="col-sm-10 translator-names">
+										<select class="select form-control" id="effi-trans">
+										</select>
+									</div>
+									<div class="col-sm-2 center">
+										<button
+											class="btn btn-search"
+											onclick="compareTranslators()"
+										>
+											Go...!
+										</button>
+									</div>
+								</div>
+								<div class="row" id="translator-error">
+									<span class="error">
+										Error: Need to select a translator.
+									</span>
+								</div>
+
+								<div class="row option-description">
+									<span class="highlight">Language Select:</span> Below tool
+									compares the conversion of various languages using various
+									translators and displays the individual efficiency in the form
+									of progress bars. This method is helpful in comparing various
+									translators against each other for a particular language
+									input. The results are prefetched into our database.
+								</div>
+								<div class="row">
+									<div class="col-sm-10 languages">
+										<select class="select form-control" id="effi-lang">
+										</select>
+									</div>
+									<div class="col-sm-2 center">
+										<button class="btn btn-search" onclick="compareLanguage()">
+											Go...!
+										</button>
+									</div>
+								</div>
+								<div class="row" id="lang-error">
+									<span class="error">
+										Error: Need to select a language.
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="row efficiency-results">
+							<div class="col-sm-12" id="effi-results">
+								<!-- <div class="row main-option">
+									<img
+										class="translator-icon"
+										src="images/google-translate.png"
+									/>
+									<span class="highlight2">
+										Google:
+									</span>
+								</div>
+								<div class="row sub-option">
+									<span class="highlight">English:</span>
+								</div> -->
+								<!-- <div class="row">
+									<span>To German:</span>
+								</div> -->
+								<!-- <div class="progress">
+									<div
+										class="progress-bar progress-bar-striped progress-bar-animated bg-color"
+										role="progressbar"
+										aria-valuenow="97.5"
+										aria-valuemin="0"
+										aria-valuemax="100"
+										style="width: 97.5%;"
+									>
+										97.5%
+									</div>
+								</div>
+
+								<div class="row">
+									<span>To French:</span>
+								</div>
+								<div class="progress">
+									<div
+										class="progress-bar progress-bar-striped progress-bar-warning active"
+										role="progressbar"
+										aria-valuenow="80.5"
+										aria-valuemin="0"
+										aria-valuemax="100"
+										style="width: 80.5%;"
+									>
+										80.5%
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+
+		<div class="row footer">
+			<div class="col-sm-12">
+				<div class="row center">
+					<div class="col-sm-4 footer-item">
+						<span class="highlight3">Made By: </span>Chitrank Mishra
+						<br />
+						<span class="highlight3">Email: </span
+						><a class="white" href="mailto:chitrankmishra@gmail.com">
+							chitrankmishra@gmail.com</a
+						>
+					</div>
+					<div class="col-sm-4 footer-item">
+						Batch: 2021<br />
+						Jaypee Institute Of Information Technology <br />
+						Noida<br />
+					</div>
+					<div class="col-sm-4 footer-item">
+						<span class="highlight3">Mentored By: </span>Dr. Vimal Kumar
+						<br />
+						<span class="highlight3">Email: </span
+						><a class="white" href="mailto:vimal.kumar@jiit.ac.in"
+							>vimal.kumar@jiit.ac.in</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		initialize();
+	</script>
+</html>

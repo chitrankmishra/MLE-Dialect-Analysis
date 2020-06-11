@@ -1,0 +1,150 @@
+html {
+	scroll-behavior: smooth;
+}
+
+:root {
+	--dark-green: #388087;
+	--pastel: #6fb3b8;
+	--light-blue: #badfe7;
+	--light-green: #c2edce;
+	--white: #f6f6f2;
+	--silver: #dfe3e6;
+	--dark-grey: #8c9ba5;
+}
+.highlight2 {
+	color: #323233;
+	font-family: Oswald-light;
+}
+.error {
+	color: red;
+}
+.success {
+	color: green;
+}
+.highlight {
+	font-family: Oswald-light;
+	font-size: 17px;
+	font-stretch: wider;
+	color: #3880a8;
+}
+.highlight3 {
+	color: var(--silver);
+}
+.white {
+	color: var(--white);
+}
+
+.body {
+	background-color: var(--white);
+	color: var(--pastel);
+}
+@media screen and(max-width:700px) {
+	/* .body {
+	} */
+}
+.red {
+	border: 2px solid red;
+}
+.blue {
+	border: 2px solid blue;
+}
+.green {
+	border: 2px solid green;
+}
+.black {
+	border: 2px solid black;
+}
+.bg-white {
+	background-color: var(--white);
+}
+
+.bg-en {
+	background-color: #2e5cb1 !important;
+}
+.bg-fr {
+	background-color: #dabe21 !important;
+}
+.bg-de {
+	background-color: #398622 !important;
+}
+.bg-es {
+	background-color: #ec6323 !important;
+}
+.bg-it {
+	background-color: #27a8b9 !important;
+}
+.bg-Google {
+	background-color: #31a1e2 !important;
+}
+.bg-Bing {
+	background-color: #23723d !important;
+}
+.bg-Yandex {
+	background-color: #db4848 !important;
+}
+
+.center {
+	margin: 0 auto;
+	text-align: center;
+	justify-content: center;
+}
+
+@font-face {
+	font-family: Allura;
+	src: url('fonts/Allura-Regular.ttf');
+}
+
+@font-face {
+	font-family: Baloo-Regular;
+	src: url('fonts/BalooThambi2-Regular.ttf');
+}
+
+@font-face {
+	font-family: Lobster-Regular;
+	src: url('fonts/Lobster-Regular.ttf');
+}
+
+@font-face {
+	font-family: OleoScript;
+	src: url('fonts/OleoScript-Regular.ttf');
+}
+
+@font-face {
+	font-family: Pacific;
+	src: url('fonts/Pacifico-Regular.ttf');
+}
+
+@font-face {
+	font-family: Pathway;
+	src: url('fonts/PathwayGothicOne-Regular.ttf');
+}
+
+@font-face {
+	font-family: Bebas;
+	src: url('fonts/BebasNeue-Regular.ttf');
+}
+
+@font-face {
+	font-family: Oswald;
+	src: url('fonts/Oswald-Medium.ttf');
+}
+
+@font-face {
+	font-family: Oswald-light;
+	src: url('fonts/Oswald-Regular.ttf');
+}
+
+@font-face {
+	font-family: Exo;
+	src: url('fonts/Exo2-BoldItalic.ttf');
+}
+
+@font-face {
+	font-family: Manrope;
+	src: url('fonts/Manrope-Medium.ttf');
+}
+
+@font-face {
+	font-family: Fjalla;
+	src: url('fonts/FjallaOne-Regular.ttf');
+}
