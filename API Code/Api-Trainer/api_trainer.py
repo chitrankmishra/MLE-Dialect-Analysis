@@ -333,6 +333,14 @@ def trainingDone():
     return
 
 
+def resetTrainer():
+    partial_data = SiteData.find_one({'Data': 'PartialEfficiency'})
+    partial_data['Iterations'] = '-1'
+    SiteData.update_one({'Data': 'PartialEfficiency'}, {
+                        '$set', partial_data}, upsert=True)
+    print('\033[94m' + 'Trainer Reset Complete')
+
+
 @app.route('/update-dataset/', methods=['GET'])
 def updateDataSet():
     query_obj = {'Data': 'LanguageCodes'}

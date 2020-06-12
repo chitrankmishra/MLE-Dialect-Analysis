@@ -268,7 +268,11 @@ async function compareLanguage() {
 				divtext = '';
 				trgname = '';
 				for (t in data[y]['Efficiency'])
-					divtext += appendProgressBars(t, t, data[y]['Efficiency'][t] * 100);
+					divtext += appendProgressBars(
+						t,
+						t,
+						(data[y]['Efficiency'][t] * 100).toFixed(2)
+					);
 				// console.log(x, dataset[x][y]);
 				resultDiv.innerHTML += divtext;
 			}
