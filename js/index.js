@@ -199,7 +199,7 @@ async function compareTranslators() {
 			trgname = '';
 			if (y == x) continue;
 			for (l in languages) if (languages[l] == y) trgname = l;
-			divtext += appendProgressBars(y, trgname, dataset[x][y]);
+			divtext += appendProgressBars(y, trgname, dataset[x][y].toFixed(2));
 			// console.log(x, dataset[x][y]);
 			resultDiv.innerHTML += divtext;
 		}
