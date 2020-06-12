@@ -1,4 +1,5 @@
 var api_url = 'https://machine-translation-comparator.herokuapp.com/';
+// var api_url = 'http://127.0.0.1:5000/';
 function makeAsyncGetRequest(path) {
 	return new Promise(function (resolve, reject) {
 		axios.get(api_url + path).then(

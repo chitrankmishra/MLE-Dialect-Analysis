@@ -71,9 +71,13 @@
 	line-height: 60px;
 }
 .platform-description {
-	font-size: 20px;
+	font-size: 18px;
+	font-weight: bolder;
 	font-family: Baloo-Regular;
 	color: var(--pastel);
+}
+.side-profile {
+	width: 100%;
 }
 
 @media screen and (max-width: 700px) {
@@ -109,7 +113,7 @@
 	border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
 	padding: 15px;
-	font-size: 16px;
+	font-size: 100%;
 	font-family: Baloo-Regular;
 	color: var(--white);
 	background: var(--pastel);
@@ -123,6 +127,7 @@
 
 .choice-height {
 	height: 200px;
+	/* overflow: scroll; */
 }
 .btn-choice {
 	position: absolute;
