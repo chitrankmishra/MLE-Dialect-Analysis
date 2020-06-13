@@ -72,7 +72,7 @@
 }
 .platform-description {
 	font-size: 18px;
-	font-weight: bolder;
+	font-weight: normal;
 	font-family: Baloo-Regular;
 	color: var(--pastel);
 }
@@ -126,7 +126,7 @@
 }
 
 .choice-height {
-	height: 200px;
+	height: 100%;
 	/* overflow: scroll; */
 }
 .btn-choice {
@@ -155,7 +155,7 @@
 	padding-top: 100px;
 	padding-right: 100px;
 	padding-left: 100px;
-	font-weight: bolder;
+	font-weight: normal;
 	text-align: justify;
 	text-justify: inter-word;
 }
@@ -184,7 +184,7 @@
 	color: var(--dark-green);
 	font-size: 18px;
 	font-family: Baloo-Regular;
-	font-weight: bolder;
+	font-weight: normal;
 }
 .select {
 	background-color: rgba(100, 100, 100, 0);
@@ -244,7 +244,7 @@ input[type='text']:focus {
 	color: var(--pastel);
 	font-family: Baloo-Regular;
 	font-size: 18px;
-	font-weight: bolder;
+	font-weight: normal;
 }
 
 .search-options {
@@ -340,7 +340,7 @@ input[type='text']:focus {
 	color: var(--pastel);
 	font-family: Baloo-Regular;
 	font-size: 18px;
-	font-weight: bolder;
+	font-weight: normal;
 }
 
 .efficiency-options {
@@ -354,7 +354,7 @@ input[type='text']:focus {
 	line-height: 30px;
 	font-family: Baloo-Regular;
 	font-size: 18px;
-	font-weight: bolder;
+	font-weight: normal;
 	margin-bottom: 20px;
 	margin-top: 20px;
 	text-align: justify;

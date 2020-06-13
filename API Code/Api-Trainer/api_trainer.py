@@ -15,26 +15,26 @@ import pymongo
 
 
 # # deployment environment variables
-import os
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--disable-dev-shm-usage')
-chrome_options.add_argument('--no-sandbox')
-
-
-def getBrowser():
-    return webdriver.Chrome(executable_path=os.environ.get(
-        'CHROMEDRIVER_PATH'), chrome_options=chrome_options)
-
-
-# # local variables
-# from selenium.webdriver.chrome.options import Options as ChromeOptions
-# chrome_op = ChromeOptions()
-# chrome_op.add_argument('--headless')
+# import os
+# chrome_options = webdriver.ChromeOptions()
+# chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+# chrome_options.add_argument('--headless')
+# chrome_options.add_argument('--disable-dev-shm-usage')
+# chrome_options.add_argument('--no-sandbox')
 
 
 # def getBrowser():
+#     return webdriver.Chrome(executable_path=os.environ.get(
+#         'CHROMEDRIVER_PATH'), chrome_options=chrome_options)
+
+
+# # local variables
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+chrome_op = ChromeOptions()
+chrome_op.add_argument('--headless')
+
+
+def getBrowser():
     return webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=chrome_op)
 
 
@@ -191,6 +191,11 @@ def trainer():
     query_obj = {'Data': 'LanguageCodes'}
     languages = SiteData.find_one(query_obj)
     languages = languages['LanguageCodes']
+
+    phrases_count = LanguageDataSet.find_one({'Language': 'English'})
+    phrases_count = phrases_count['Data']
+    phrases_count = len(phrases_count)
+
     # for x in languages:
     #     print(languages[x])
 
@@ -211,14 +216,38 @@ def trainer():
 
     if(iteration_done > -1):
         print('Already Done %sth iterations' % iteration_done)
+        lang_set_count = 0
+        lang_set_done = iteration_done/phrases_count
         x = 0
         efficiency_tuple = partial_data['EfficiencyTuple']
+        break_flag = 0
         for i in range(len(languages)):
             for j in range(len(languages)):
+
+                if(lang_set_count <= lang_set_done):
+                    if(i != j):
+                        lang_set_count += 1
+                else:
+                    break_flag = 1
+                    break
+
                 google_eff[i][j] = efficiency_tuple[x]['Efficiency']['Google']
                 yandex_eff[i][j] = efficiency_tuple[x]['Efficiency']['Yandex']
                 bing_eff[i][j] = efficiency_tuple[x]['Efficiency']['Bing']
                 x += 1
+
+            if break_flag:
+                break
+
+    # for row in google_eff:
+    #     print(row)
+
+    # for row in bing_eff:
+    #     print(row)
+
+    # for row in yandex_eff:
+    #     print(row)
+    # exit()
 
     iteration_count = 0
     s_index = 0
@@ -230,7 +259,7 @@ def trainer():
                 t_index += 1
                 continue
 
-            print('\033[94m' + 'Translating from '+src+' to '+trg)
+            print('\033[36m' + 'Translating from '+src+' to '+trg)
 
             src_data = LanguageDataSet.find_one({'Language': src})['Data']
             p_index = 0
@@ -238,6 +267,10 @@ def trainer():
             for phrase in src_data:
                 p_index += 1
                 print('\033[31m' + 'Phrase: '+phrase)
+                print('\033[92m', end='')
+                print('Google: ', google_eff[s_index][t_index])
+                print('Bing: ', bing_eff[s_index][t_index])
+                print('Yandex: ', yandex_eff[s_index][t_index])
 
                 if(iteration_count <= iteration_done):
                     print('\033[94m' + 'Already Done\n')
@@ -260,25 +293,34 @@ def trainer():
                 score_bing = compareString(
                     res_bing['translation'], res_deepL['translation'])
 
-                google_eff[s_index][t_index] = (
-                    google_eff[s_index][t_index] * (p_index-1) + (len(phrase)-score_google)/len(phrase))/p_index
+                google_eff[s_index][t_index] = float(
+                    google_eff[s_index][t_index] * (p_index-1) + float(len(phrase)-score_google)/len(phrase))/p_index
 
-                yandex_eff[s_index][t_index] = (
-                    yandex_eff[s_index][t_index] * (p_index-1) + (len(phrase)-score_yandex)/len(phrase))/p_index
+                yandex_eff[s_index][t_index] = float(
+                    yandex_eff[s_index][t_index] * (p_index-1) + float(len(phrase)-score_yandex)/len(phrase))/p_index
 
-                bing_eff[s_index][t_index] = (
-                    bing_eff[s_index][t_index] * (p_index-1) + (len(phrase)-score_bing)/len(phrase))/p_index
+                bing_eff[s_index][t_index] = float(
+                    bing_eff[s_index][t_index] * (p_index-1) + float(len(phrase)-score_bing)/len(phrase))/p_index
 
                 print('\033[93m' + 'DeepL: '+res_deepL['translation'])
                 print('\033[93m' + 'Google: '+res_google['translation'])
-                print('\033[0m' + 'Score:', score_google, 'Current Eff:',
+                print('\033[92m', end='')
+                print('Score:', score_google, 'Current Eff:',
                       google_eff[s_index][t_index])
                 print('\033[93m' + 'Bing: '+res_bing['translation'])
-                print('\033[0m' + 'Score:', score_bing, 'Current Eff:',
+                print('\033[92m', end='')
+                print('Score:', score_bing, 'Current Eff:',
                       bing_eff[s_index][t_index])
                 print('\033[93m' + 'Yandex: '+res_yandex['translation'])
-                print('\033[0m' + 'Score:', score_yandex, 'Current Eff:',
+                print('\033[92m', end='')
+                print('Score:', score_yandex, 'Current Eff:',
                       yandex_eff[s_index][t_index])
+
+                # print((google_eff[s_index][t_index] * (p_index-1) +
+                #        (len(phrase)-score_google)/len(phrase))/p_index)
+                # print(len(phrase), score_google, p_index,
+                #       (len(phrase)-score_google)/len(phrase))
+                # exit()
 
                 efficiency_tuple = []
                 res_s_in = 0
@@ -330,6 +372,7 @@ def trainingDone():
                                 '$set': output}, upsert=True)
     print('Final Results Uploaded...!')
     print(datetime.now())
+    resetTrainer()
     return
 
 
@@ -337,7 +380,7 @@ def resetTrainer():
     partial_data = SiteData.find_one({'Data': 'PartialEfficiency'})
     partial_data['Iterations'] = '-1'
     SiteData.update_one({'Data': 'PartialEfficiency'}, {
-                        '$set', partial_data}, upsert=True)
+                        '$set': partial_data}, upsert=True)
     print('\033[94m' + 'Trainer Reset Complete')
 
 

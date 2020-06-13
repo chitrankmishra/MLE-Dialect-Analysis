@@ -30,8 +30,8 @@ def getBrowser():
 # chrome_op.add_argument('--headless')
 
 
-def getBrowser():
-    return webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=chrome_op)
+# def getBrowser():
+#     return webdriver.Chrome(executable_path='/usr/bin/chromedriver', options=chrome_op)
 
 
 connection_url = 'mongodb+srv://admin:chitrankmishra@cluster0-nqpus.mongodb.net/MachineTranslation?retryWrites=true&w=majority'
