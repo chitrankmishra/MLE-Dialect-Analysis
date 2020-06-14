@@ -276,6 +276,7 @@ input[type='text']:focus {
 }
 .translator-icon {
 	width: 35px;
+	height: 100%;
 	margin-right: 5px;
 }
 #result {
