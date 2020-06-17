@@ -18,6 +18,7 @@ async function displaySearchSpace() {
 		document.getElementsByClassName('to-lang')[0],
 		'to-lang'
 	);
+	window.scrollBy(0, 800);
 }
 
 async function addLangOptions(element, id) {
@@ -141,7 +142,7 @@ async function displayEfficiencyCharts() {
 		document.getElementsByClassName('translator-names')[0],
 		'effi-trans'
 	);
-	window.scrollBy(0, 500);
+	window.scrollBy(0, 800);
 }
 
 async function compareTranslators() {
