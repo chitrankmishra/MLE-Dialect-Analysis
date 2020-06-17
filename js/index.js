@@ -156,6 +156,22 @@ async function compareTranslators() {
 	space = trans.indexOf(' ');
 	name = trans.substring(0, space);
 
+	var resultDiv = document.getElementById('effi-results');
+	resultDiv.innerHTML =
+		'<div class="row center">    <span class="highlight2"  id="loading2"> LOADING ...</span></div>';
+
+	var i = 1;
+	var loading = setInterval(function () {
+		text = 'LOADING';
+		var t = 0;
+		while (t <= i) {
+			text += '.';
+			t++;
+		}
+		document.getElementById('loading2').innerHTML = text;
+		i = (i + 1) % 4;
+	}, 500);
+
 	response = await makeAsyncGetRequest('/get-efficiency-tuple/');
 	data = response.result;
 	response = await makeAsyncGetRequest('/get-languages/');
@@ -206,6 +222,8 @@ async function compareTranslators() {
 		}
 		resultDiv.innerHTML += '<hr>';
 	}
+
+	clearInterval(loading);
 }
 
 function appendProgressBars(trg, trgname, percent) {
@@ -235,6 +253,22 @@ async function compareLanguage() {
 		return;
 	}
 	document.getElementById('lang-error').style.display = 'none';
+
+	var resultDiv = document.getElementById('effi-results');
+	resultDiv.innerHTML =
+		'<div class="row center">    <span class="highlight2"  id="loading2"> LOADING ...</span></div>';
+
+	var i = 1;
+	var loading = setInterval(function () {
+		text = 'LOADING';
+		var t = 0;
+		while (t <= i) {
+			text += '.';
+			t++;
+		}
+		document.getElementById('loading2').innerHTML = text;
+		i = (i + 1) % 4;
+	}, 500);
 
 	response = await makeAsyncGetRequest('/get-efficiency-tuple/');
 	data = response.result;
@@ -280,4 +314,6 @@ async function compareLanguage() {
 		}
 		resultDiv.innerHTML += '<hr>';
 	}
+
+	clearInterval(loading);
 }
