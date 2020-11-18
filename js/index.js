@@ -84,12 +84,12 @@ async function searchPhrase() {
 		i = (i + 1) % 4;
 	}, 500);
 
-	response = await makeAsyncGetRequest('/get-translators/');
+	response = await makeAsyncGetRequest('get-translators/');
 	translators = response.result;
 
 	for (instance in translators) {
 		response = await makeAsyncGetRequest(
-			'/' + translators[instance] + '/' + src + '/' + trg + '/' + phrase + '/'
+			translators[instance] + '/' + src + '/' + trg + '/' + phrase + '/'
 		);
 
 		console.log(response.result);
@@ -172,9 +172,9 @@ async function compareTranslators() {
 		i = (i + 1) % 4;
 	}, 500);
 
-	response = await makeAsyncGetRequest('/get-efficiency-tuple/');
+	response = await makeAsyncGetRequest('get-efficiency-tuple/');
 	data = response.result;
-	response = await makeAsyncGetRequest('/get-languages/');
+	response = await makeAsyncGetRequest('get-languages/');
 	languages = response.result;
 
 	// console.log(data, languages);
@@ -270,9 +270,9 @@ async function compareLanguage() {
 		i = (i + 1) % 4;
 	}, 500);
 
-	response = await makeAsyncGetRequest('/get-efficiency-tuple/');
+	response = await makeAsyncGetRequest('get-efficiency-tuple/');
 	data = response.result;
-	response = await makeAsyncGetRequest('/get-languages/');
+	response = await makeAsyncGetRequest('get-languages/');
 	languages = response.result;
 
 	name = '';
